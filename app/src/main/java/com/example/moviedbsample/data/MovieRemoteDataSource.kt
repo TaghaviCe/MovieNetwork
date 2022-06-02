@@ -6,12 +6,12 @@ import com.example.moviedbsample.network.MoviesApi
 
 class MovieRemoteDataSource {
     suspend fun getMovie():List<MovieList>{
-        return MoviesApi.retrofitService.getMovies()
+        return MoviesApi.retrofitService.getMovies().results
     }
-    fun getSampleMovie():List<MovieList>{
-        return listOf(
-            MovieList("Dune"),
-            MovieList("firelight")
-        )
-    }
+//    fun getSampleMovie():List<MovieList>{
+//        return listOf(
+//            MovieList(),
+//            MovieList("firelight")
+//        )
+//    }
 }

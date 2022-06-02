@@ -39,7 +39,7 @@ interface ApiService {
     suspend fun getMovies(
         @Query("page") page:Int=1,
         @Query("api_key") apikey:String= API_KEY
-    ): List<MovieList>
+    ): ApiResult
 }
 
 /**
