@@ -4,9 +4,6 @@ import com.squareup.moshi.Json
 
 data class MovieList(
 
-    @Json(name = "backdrop_path")
-    val backdropPath: String,
-
     @Json(name = "genre_ids")
     val genreIDS: List<Long>,
 
@@ -23,7 +20,7 @@ data class MovieList(
     val title: String,
 
     @Json(name = "video")
-    val video: Boolean,
+    val video: Boolean
 
 )
 

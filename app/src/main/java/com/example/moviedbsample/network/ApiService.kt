@@ -3,6 +3,8 @@ package com.example.moviedbsample.network
 import com.example.moviedbsample.MovieList
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -21,13 +23,17 @@ private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
-/**
- * Use the Retrofit builder to build a retrofit object using a Moshi converter with our Moshi
- * object.
- */
+
+val logger = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
+
+val client = OkHttpClient.Builder()
+    .addInterceptor(logger)
+    .build()
+
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .baseUrl(BASE_URL)
+    .client(client)
     .build()
 
 /**
@@ -37,8 +43,8 @@ interface ApiService {
 
     @GET("/movie/popular")
     suspend fun getMovies(
-        @Query("page") page:Int=1,
-        @Query("api_key") apikey:String= API_KEY
+        @Query("api_key") key:String= API_KEY,
+        @Query("page") page:Int=1
     ): ApiResult
 }
 

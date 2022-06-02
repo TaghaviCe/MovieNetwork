@@ -8,10 +8,9 @@ class MovieRemoteDataSource {
     suspend fun getMovie():List<MovieList>{
         return MoviesApi.retrofitService.getMovies().results
     }
-//    fun getSampleMovie():List<MovieList>{
-//        return listOf(
-//            MovieList(),
-//            MovieList("firelight")
-//        )
-//    }
+    fun getSampleMovies() : List<MovieList>{
+        return listOf(
+            MovieList(listOf(), 111,"" , "","supranos" , false),
+        )
+    }
 }

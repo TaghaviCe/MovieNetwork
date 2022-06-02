@@ -4,7 +4,9 @@ import com.example.moviedbsample.MovieList
 import com.squareup.moshi.Json
 
 data class ApiResult (
+    @Json(name = "page")
     val page: Long,
+    @Json(name = "results")
     val results: List<MovieList>,
 
 //    @Json(name = "total_pages")
